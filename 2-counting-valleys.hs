@@ -31,3 +31,16 @@
 
 -- n: the number of steps Gary takes
 -- s: a string describing his path
+
+module CountingValleys where
+
+import Data.List as List
+
+countingValleys :: Int -> String -> Int
+countingValleys _  = sum . zipSelfWith markOut . List.scanl' step 0 where
+  step s 'D' = s - 1
+  step s 'U' = s + 1
+  step s _   = s
+  zipSelfWith f xs = zipWith f xs (tail xs)
+  markOut (-1) 0 = 1
+  markOut _ _  = 0
