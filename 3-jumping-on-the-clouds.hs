@@ -22,3 +22,15 @@
 -- jumpingOnClouds has the following parameter(s):
 
 -- c: an array of binary integers
+
+module JumpingOnTheClouds where
+
+import Data.List as List
+
+jumpingOnClouds :: [Int] -> Int
+jumpingOnClouds [0,0] = 1
+jumpingOnClouds (0:0:0:xs) = 1 + jumpingOnClouds (0:xs)
+jumpingOnClouds (0:0:1:xs) = 1 + jumpingOnClouds (0:1:xs)
+jumpingOnClouds (0:1:0:xs) = 1 + jumpingOnClouds (0:xs)
+jumpingOnClouds (1:0:0:xs) = 0
+jumpingOnClouds _ = 0
