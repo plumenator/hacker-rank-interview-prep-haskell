@@ -17,3 +17,10 @@
 
 -- n: the number of socks in the pile ar: the colors of each sock
 
+module SockMerchant where
+import Data.Map.Strict as Map
+import Data.List as List
+
+sockMerchant :: Int -> [Int] -> Int
+sockMerchant _ = Map.foldl' (+) 0 . Map.map (`div` 2) . List.foldl' insert Map.empty where
+  insert m k = Map.insertWith (+) k 1 m
