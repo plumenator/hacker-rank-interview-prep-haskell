@@ -18,3 +18,9 @@
 
 -- s: a string to repeat
 -- n: the number of characters to consider
+
+repeatedString :: String -> Int -> Int
+repeatedString s n = (n `div` l) * count s + count (take (n `mod` l) s)  where
+  l = length s
+
+count = sum . map (\x -> if x == 'a' then 1 else 0)
