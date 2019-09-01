@@ -25,3 +25,16 @@
 -- minimumBribes has the following parameter(s):
 
 -- q: an array of integers
+
+module NewYearChaos where
+
+import Data.List
+
+minimumBribes :: [Int] -> Maybe Int
+minimumBribes q
+  | is_too_chaotic = Nothing
+  | otherwise = Just (Data.List.sum bribes)
+  where
+    is_too_chaotic = or $ Data.List.zipWith (\n p -> (n - p) > 2) q [1..length q]
+    bribes = Data.List.map bribesTaken . zip q $ Data.List.inits q
+    bribesTaken (x, xs) = length $ Data.List.filter (> x) xs
